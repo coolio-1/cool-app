@@ -6,8 +6,8 @@ var path = require('path');
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
   var express=require('express');
-  app.use(express.static(path.join(__dirname)));
-  res.sendFile(path.join(__dirname, '../chatapp', 'index.html'));
+  app.use(express.static(__dirname));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
  
 // Register events on socket connection
@@ -21,6 +21,6 @@ io.on('connection', function(socket){
 });
  
 // Listen application request on port 3000
-http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
+http.listen(process.env.PORT || 8080);
+  
+
